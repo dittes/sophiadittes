@@ -62,11 +62,41 @@
   .impressum a:hover,
   .impressum a:focus-visible { color: var(--link-hover); text-decoration: underline; }
   .impressum a:focus-visible { outline: 2px solid #3a86ff; outline-offset: 2px; }
+  .games {
+    position: fixed;
+    left: 0; right: 0;
+    bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+    z-index: 2;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;
+    padding: 0 20px;
+    pointer-events: none;
+  }
+  .games a {
+    pointer-events: auto;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px 12px 16px;
+    font-size: 16px; font-weight: 600; letter-spacing: .01em;
+    color: #fff; text-decoration: none;
+    border-radius: 999px;
+    background: var(--c);
+    box-shadow: 0 4px 0 var(--d), 0 8px 18px rgba(30,30,44,.15);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .games a .e { font-size: 24px; line-height: 1; display: inline-block; transition: transform .25s; }
+  .games a:hover, .games a:focus-visible { transform: translateY(-3px) rotate(-1.5deg); box-shadow: 0 7px 0 var(--d), 0 14px 24px rgba(30,30,44,.18); }
+  .games a:hover .e, .games a:focus-visible .e { transform: rotate(-14deg) scale(1.2); }
+  .games a:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--d); }
+  .games a:focus-visible { outline: 2px solid #3a86ff; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { .games a, .games a .e { transition: none; } }
 </style>
 </head>
 <body>
 <canvas id="c" role="img" aria-label="Kleine Ameisen bilden das Wort SOPHIA. Tippen, und die Ameisen rennen auseinander und kommen zurück."></canvas>
 <noscript><p style="position:fixed;inset:0;display:grid;place-items:center;margin:0">SOPHIA</p></noscript>
+<nav class="games" aria-label="Spiele">
+  <a href="animalattack/" style="--c:#e63946;--d:#a82431"><span class="e" aria-hidden="true">🦁</span>Animal Attack</a>
+  <a href="skateprincess/" style="--c:#ec4899;--d:#b02a70"><span class="e" aria-hidden="true">🛹</span>Skate Princess</a>
+</nav>
 <nav class="impressum"><a href="https://andreasdittes.com/imprint" target="_blank" rel="noopener">Impressum</a></nav>
 
 <script>
@@ -219,13 +249,13 @@ function computeLayout() {
     const widths = lines.map(l => l.reduce((a, li) => a + LET[WORD[li]].w, 0) + GAP * (l.length - 1));
     const wu = Math.max(...widths);
     const hu = lines.length * LH + (lines.length - 1) * LGAP;
-    const s = Math.min(W * 0.86 / wu, H * 0.66 / (hu * SIN));
+    const s = Math.min(W * 0.86 / wu, H * 0.56 / (hu * SIN));
     if (s * bias[oi] > bestScore) { bestScore = s * bias[oi]; best = oi; bestS = s; }
   });
   const lines = options[best];
   S = Math.min(bestS, 120);
   cx = W / 2;
-  cy = H * 0.46;
+  cy = H * 0.40;
   const hu = lines.length * LH + (lines.length - 1) * LGAP;
   lines.forEach((l, k) => {
     const lw = l.reduce((a, li) => a + LET[WORD[li]].w, 0) + GAP * (l.length - 1);
