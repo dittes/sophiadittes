@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#e8b579">
-<title>Animal Attack</title>
+<title>Ant Attack</title>
 <!--
-  Animal Attack — Milestone 1.6
+  Ant Attack — Milestone 1.6
   Three.js pinned to 0.186.0 (newest stable on npm at build time), ES module via import map.
 -->
 <script type="importmap">
@@ -941,7 +941,7 @@ function recomputeReach(ctx, st){
 const I18N = {
   de: { level:'Level', undo:'Zurück', retry:'Neu', next:'Nächstes Level', replay:'Nochmal', levels:'Level wählen',
     winT:'Picknick geputzt!', winS:'Jeder Block ist weggefuttert.', loseT:'Alle Slots belegt', loseS:'Kein Trupp kommt mehr an seine Farbe. Nimm die letzte Runde zurück oder starte neu.',
-    undoRound:'Runde zurück', sound:'Sound', lang:'Sprache', on:'An', off:'Aus', close:'Weiter spielen', soon:'Du hast alle Level geschafft!',
+    undoRound:'Runde zurück', sound:'Sound', lang:'Sprache', on:'An', off:'Aus', close:'Weiter spielen', home:'← Zurück zu sophiadittes.com', soon:'Du hast alle Level geschafft!',
     tip1:'Tippe auf vordere Nester. Alle 4 Slots können gleichzeitig losziehen.',
     tip2:'Ameisen laufen nicht über Blöcke. Die Kerne sind erst erreichbar, wenn das Rot drumherum weg ist.',
     tip3:'Findet ein Trupp keinen erreichbaren Block, wartet er im Slot. Sind alle 4 voll, ist das Level verloren.',
@@ -959,7 +959,7 @@ const I18N = {
     tip8:'Im Shop tauschst du Punkte gegen Booster: Farbtausch, Extra-Slot und Superameise.' },
   en: { level:'Level', undo:'Undo', retry:'Retry', next:'Next level', replay:'Play again', levels:'Choose level',
     winT:'Picnic cleared!', winS:'Every block got eaten.', loseT:'All slots are full', loseS:'No squad can reach its colour. Undo the last round or retry.',
-    undoRound:'Undo round', sound:'Sound', lang:'Language', on:'On', off:'Off', close:'Keep playing', soon:'You beat every level!',
+    undoRound:'Undo round', sound:'Sound', lang:'Language', on:'On', off:'Off', close:'Keep playing', home:'← Back to sophiadittes.com', soon:'You beat every level!',
     tip1:'Tap front nests. All 4 slots can head out at the same time.',
     tip2:"Ants can't walk over blocks. The seeds open up once the red around them is gone.",
     tip3:'A squad with no reachable block waits in its slot. If all 4 fill up, you lose.',
@@ -1980,6 +1980,7 @@ function showMenu(){
   openModal(`<h2>${T('levels')}</h2><div class="lvwrap">${html}</div>
     <div class="set"><span>${T('sound')}</span><button class="st" data-act="sound">${save.sound ? T('on') : T('off')}</button></div>
     <div class="set"><span>${T('lang')}</span><button class="st" data-act="lang">${lang === 'de' ? 'Deutsch' : 'English'}</button></div>
+    <div class="row"><a class="st" href="https://sophiadittes.com" style="text-decoration:none">${T('home')}</a></div>
     <div class="row"><button class="st go" data-act="close">${T('close')}</button></div>`);
   const cur = modal.querySelector('.lv.cur'); cur && cur.scrollIntoView({ block: 'nearest' });
 }
